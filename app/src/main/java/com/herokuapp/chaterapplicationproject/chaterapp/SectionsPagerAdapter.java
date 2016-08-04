@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 /**
  * Created by klu shvartsman on 04/08/2016.
+ * Tab Adapter
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -37,7 +38,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return "Chat's";
             case 1:
-                return "Contacts";
+                return "ContactsFragment";
             case 2:
                 return "Options";
         }
@@ -71,12 +72,26 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                                  Bundle savedInstanceState)
         {
             View rootView;
-            if(getArguments().getInt(ARG_SECTION_NUMBER)==2)
-                rootView = inflater.inflate(R.layout.fragment_contacts, container, false);
-            else {
-                rootView = inflater.inflate(R.layout.fragment_main, container, false);
-                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-                textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            TextView textView;
+            int frag = getArguments().getInt(ARG_SECTION_NUMBER);
+            switch(frag)
+            {
+                case 1:
+                    rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                    textView = (TextView) rootView.findViewById(R.id.section_label);
+                    textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                    break;
+                case 2:
+                    rootView = inflater.inflate(R.layout.fragment_contacts, container, false);
+
+                    break;
+                case 3:
+                    rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                    textView = (TextView) rootView.findViewById(R.id.section_label);
+                    textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                    break;
+                default:
+                    rootView = null;
             }
 
             return rootView;

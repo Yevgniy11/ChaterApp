@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Contacts extends Fragment {
+public class ContactsFragment extends Fragment {
 
 
-    public Contacts() {
+    public ContactsFragment() {
         // Required empty public constructor
     }
 
@@ -26,6 +26,8 @@ public class Contacts extends Fragment {
         return inflater.inflate(R.layout.fragment_contacts, container, false);
     }
 
-
-
+    @Override
+    public void setArguments(Bundle args) {
+        super.setArguments(args);
+    }
 }
